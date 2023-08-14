@@ -1,4 +1,4 @@
-# rEFIndSetup
+# How to get Started!
 
 - Clone the repo to your ESP directory
 
