@@ -8,7 +8,7 @@ esp_partuuid=$(sudo blkid -s PARTUUID -o value $(mount | grep ' /boot/efi ' | cu
 
 # If Windows partuuid file is not found then ask user
 if ! [ -f win_partuuid.txt ]; then
-    printf "\n\e[1;33mSelect your windows partuuid\e[0m\n\n"
+    printf "\n\e[1;33mSelect your Windows boot partuuid\e[0m\n\n"
     lsblk -o NAME,SIZE,MOUNTPOINT,PARTUUID
     read -p $'\n\e[1;33mEnter the PARTUUID:\e[0m ' win_partuuid
 
