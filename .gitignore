@@ -1,0 +1,10 @@
+# Ignore theme.conf and user's custom variables
+theme_vars.cfg
+theme.conf
+
+# Ignore the text file including the Windows partuuid
+win_partuuid.txt
+
+# Ignore refind.conf and user's custom variables
+refind_vars.cfg
+refind.conf
