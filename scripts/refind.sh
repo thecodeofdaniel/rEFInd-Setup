@@ -19,8 +19,9 @@ else
 fi
 
 # Source the custom config files by user
-source ./config/theme_vars.cfg
 source ./config/refind_vars.cfg
+big_icon_size=$(cat "theme.conf" | grep -oP 'big_icon_size \K\d+')
+small_icon_size=$(cat "theme.conf" | grep -oP 'small_icon_size \K\d+')
 
 # Where the conf file will be put
 conf="/boot/efi/EFI/refind/refind.conf"
