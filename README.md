@@ -3,7 +3,7 @@
 - Clone the repo to your ESP directory
 
   ```
-  $ sudo git clone https://github.com/thecodeofdaniel/rEFIndSetup.git /boot/efi/EFI/refind/theme
+  $ sudo git clone https://github.com/thecodeofdaniel/rEFInd-setup /boot/efi/EFI/refind/theme
   ```
 
 - Create a backup of the default refind.conf
