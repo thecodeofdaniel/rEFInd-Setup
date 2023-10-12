@@ -1,4 +1,15 @@
-# How to get Started!
+# rEFInd-setup
+
+A helping hand to setup your refind.conf and theme.conf for a dual boot system with Windows and Linux
+
+## How to get Started!
+
+- Make sure you've installed rEFInd
+
+  ```
+  sudo apt install refind
+  ```
+  - Accept the default option when installing
 
 - Clone the repo to your ESP directory
 
