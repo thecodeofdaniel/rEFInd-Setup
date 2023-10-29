@@ -8,7 +8,7 @@ A helping hand to setup your refind.conf and theme.conf for a dual boot system w
 
 **to this...**
 
-![custom refind theme](./images/custom_refind.bmp)
+![custom refind theme](./images/custom_refind.png)
 
 ## How to get Started!
 
