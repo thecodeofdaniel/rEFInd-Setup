@@ -1,4 +1,4 @@
-# rEFInd-setup
+# rEFInd-Pop!_OS-setup
 
 A helping hand to setup your refind.conf and theme.conf for a dual boot system with Windows and Linux
 
