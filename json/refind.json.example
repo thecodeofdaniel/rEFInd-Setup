@@ -1,0 +1,6 @@
+{
+  "timeout": 60,
+  "shutdown_after_timeout": true,
+  "use_nvram": false,
+  "resolution": "max"
+}

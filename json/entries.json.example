@@ -1,0 +1,42 @@
+{
+  "REFIND_PATH": "EFI/refind",
+  "root": [
+    {
+      "menuentry": "Pop!_OS",
+      "icon": "os_pop.png",
+      "volume": "879d7319-1e5e-4457-be52-d622b8c0834a",
+      "options": ["ro"],
+      "loader": "EFI/systemd/systemd-bootx64.efi",
+      "children": [
+        {
+          "submenuentry": "using root (/)",
+          "volume": "79a9cec4-bce7-4bad-8294-4aa148d19bf4",
+          "options": ["ro"],
+          "loader": "/boot/vmlinuz",
+          "initrd": "/boot/initrd.img"
+        },
+        {
+          "submenuentry": "using ESP (/boot/efi)",
+          "volume": "879d7319-1e5e-4457-be52-d622b8c0834a",
+          "options": ["ro"],
+          "loader": "EFI/Pop_OS-befced05-7acf-4424-98a1-639189cd8d61/vmlinuz.efi",
+          "initrd": "EFI/Pop_OS-befced05-7acf-4424-98a1-639189cd8d61/initrd.img",
+          "disabled": true
+        },
+        {
+          "submenuentry": "using (BOOTX64.EFI) from ESP",
+          "volume": "879d7319-1e5e-4457-be52-d622b8c0834a",
+          "options": ["ro"],
+          "loader": "EFI/BOOT/BOOTX64.EFI",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "menuentry": "Windows 11",
+      "icon": "os_windows-alt.png",
+      "volume": "6f1db61c-04c9-4089-834d-474cf8c57747",
+      "loader": "EFI/Microsoft/Boot/bootmgfw.efi"
+    }
+  ]
+}

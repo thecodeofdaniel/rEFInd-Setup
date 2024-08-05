@@ -1,0 +1,8 @@
+{
+  "_comment1": "Available icon sizes: 128-48, 256-96, 384-144, 512-192",
+  "_comment2": "For more infomation: https://www.rodsbooks.com/refind/configfile.html",
+
+  "icon_size": "384-144",
+  "hideui": ["hints"],
+  "showtools": ["hidden_tags", "firmware", "shutdown"]
+}

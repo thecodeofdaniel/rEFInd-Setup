@@ -1,60 +1,66 @@
-# rEFInd-Pop!_OS-setup
+# rEFInd Setup
 
-A helping hand to setup your refind.conf and theme.conf for a dual boot system with Windows and Linux
+A helping hand to setup your refind.conf and your theme.conf!
 
-## Turn your boot manager theme from this...
+## Where are the icons from?
 
-![default refind theme](./images/default_refind.png)
+Originally created by @munlik, with additional icons contributed by
+@bobafetthotmail.
+
+## Transform your theme
+
+**from this...**
+
+![default refind theme](./imgs/default_refind.png)
 
 **to this...**
 
-![custom refind theme](./images/custom_refind.png)
+![custom refind theme](./imgs/custom_refind.png)
 
-## How to get Started!
+## Create the JSON files
 
-- Make sure you've installed rEFInd
+Create the json files using the following script. This will make a copy of the
+`*.json.example` files. Edit them to fit your configuration.
 
-  ```
-  sudo apt install refind
-  ```
-  - Accept the default option when installing
+```bash
+./zgeneratejson.sh
+```
 
-- Clone the repo to your ESP directory
+### What is needed?
 
-  ```
-  $ sudo git clone https://github.com/thecodeofdaniel/rEFInd-setup /boot/efi/EFI/refind/theme
-  ```
+The only requirement is that a name is needed for the entry. Everything else is
+optional. However you will obviously need the volume, loader, initrd to make
+it usuable. This is similar to the refind.conf already, but in JSON format. It's
+also easier to configure with the provided theme. Just follow the example json
+files.
 
-- Create a backup of the default refind.conf
+## Explanation
 
-  ```
-  $ sudo mv /boot/efi/EFI/refind/refind.conf /boot/efi/EFI/refind/refind.conf.bak
-  ```
+- `refind.json` will hold the settings for refind.
 
-- Enter root user
+- `entries.json` will hold the menuentries and submenuentries.
 
-  ```
-  $ sudo su
-  ```
+  - The required keys will be the name for these entries
+    (`menuentry`/`submenuentry`)
 
-- Head to the directory where you cloned the repo
+- `theme.json` controls the look of refind.
 
-  ```
-  # cd /boot/efi/EFI/refind/theme
-  ```
+## Backup
 
-- Run the following script to get started
+Create a backup of previous refind.conf file and theme.conf.
 
-  ```
-  # ./run.sh
-  ```
+```bash
+mv refind.conf refind.conf.bak
+mv theme.conf theme.conf.bak
+```
 
-- Edit your __refind.conf__ and __theme.conf__ in the __`config`__ directory
+## Run
 
-- There you will be able to change the size of the icons, the image of your linux distro, and some other arguments.
+Once you're done editing the json files. Run the bash script to copy the custom
+icons and your configurations to the refind directory. Run the sudo since those
+files will belong to root now. However, a copy of the conf files will be in the
+`conf` directory.
 
-- Once you have edited your config to your liking, run the script again to create YOUR custom refind.conf and theme.conf!
-
-  ```
-  # ./run.sh
-  ```
+```bash
+sudo ./zrun.sh
+```
