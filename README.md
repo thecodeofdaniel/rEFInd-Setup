@@ -4,8 +4,9 @@ A helping hand to setup your refind.conf and your theme.conf!
 
 ## Where are the icons from?
 
-Originally created by @munlik, with additional icons contributed by
-@bobafetthotmail.
+Originally created by [@munlik](https://github.com/munlik/refind-theme-regular),
+with additional icons contributed by
+[@bobafetthotmail](https://github.com/bobafetthotmail/refind-theme-regular).
 
 ## Transform your theme
 
@@ -23,16 +24,15 @@ Create the json files using the following script. This will make a copy of the
 `*.json.example` files. Edit them to fit your configuration.
 
 ```bash
-./zgeneratejson.sh
+./z_generateJSON.sh
 ```
 
 ### What is needed?
 
 The only requirement is that a name is needed for the entry. Everything else is
-optional. However you will obviously need the volume, loader, initrd to make
-it usuable. This is similar to the refind.conf already, but in JSON format. It's
-also easier to configure with the provided theme. Just follow the example json
-files.
+optional. However, you will need the volume, loader, initrd to make it usuable.
+This is similar to the refind.conf already, but in JSON format. It's also easier
+to configure with the provided theme. Just follow the example json files.
 
 ## Explanation
 
@@ -40,27 +40,27 @@ files.
 
 - `entries.json` will hold the menuentries and submenuentries.
 
-  - The required keys will be the name for these entries
-    (`menuentry`/`submenuentry`)
+  - A menuentry will need the `menuentry` key
+    - If you want to add a submenuentry, you'll need to add the `children` key
+  - A submenuentry will need the `submenuentry` key
 
-- `theme.json` controls the look of refind.
+- `theme.json` controls the preset theme for refind.
 
-## Backup
+## Get Started
 
-Create a backup of previous refind.conf file and theme.conf.
+Create a backup of refind.conf and theme.conf if there is one.
 
 ```bash
 mv refind.conf refind.conf.bak
 mv theme.conf theme.conf.bak
 ```
 
-## Run
+## Run script
 
 Once you're done editing the json files. Run the bash script to copy the custom
-icons and your configurations to the refind directory. Run the sudo since those
-files will belong to root now. However, a copy of the conf files will be in the
-`conf` directory.
+icons and your configurations to the refind directory. A copy of the conf files
+will be in the `conf` directory.
 
 ```bash
-sudo ./zrun.sh
+./z_run.sh
 ```
