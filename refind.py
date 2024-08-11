@@ -29,7 +29,7 @@ def get_keys(data, keys_set=None) -> set[str]:
 
 
 # Returns whether string should be indented
-def is_menuentry(indent: str, entry: str) -> str:
+def is_submenuentry(indent: str, entry: str) -> str:
     return indent if entry == "submenuentry" else ""
 
 
@@ -43,8 +43,11 @@ def get_refind_settings(data, keys: set[str]) -> str:
     string = ""
 
     for key in keys:
-        value = str(data[key])
-        string += f"{key} {value.lower()}\n"
+        if isinstance(data[key], list):
+            string += f'{key} {",".join(data[key])}\n'
+        else:
+            value = str(data[key])
+            string += f"{key} {value.lower()}\n"
     string += "\n"
 
     return string
@@ -61,7 +64,7 @@ def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
             print(f"Need to have {entry} key\n")
             break
         else:
-            string += is_menuentry(tab, entry)
+            string += is_submenuentry(tab, entry)
             string += f'{entry} "{node[entry]}"' + " {\n"
 
         # Add icon path
@@ -70,13 +73,13 @@ def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
             node["icon"] = (
                 f"{path}/icons-custom/{BIG_ICON_SIZE}-{SMALL_ICON_SIZE}/{img_name}"
             )
-            string += is_menuentry(tab, entry)
+            string += is_submenuentry(tab, entry)
             string += f'{tab}icon {node["icon"]}\n'
 
         # Add volume
         if isKey("volume", node):
             node["volume"] = node["volume"].upper()
-            string += is_menuentry(tab, entry)
+            string += is_submenuentry(tab, entry)
             string += f'{tab}volume {node["volume"]}\n'
 
         # Add rest of keys
@@ -84,21 +87,24 @@ def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
             if key == entry or key in CHECKED_KEYS:
                 continue
             if isKey(key, node):
-                string += is_menuentry(tab, entry)
-                string += f"{tab}{key} {node[key]}\n"
+                string += tab + is_submenuentry(tab, entry)
+                if isinstance(node[key], list):
+                    string += f'{key} {",".join(node[key])}\n'
+                else:
+                    string += f"{key} {node[key]}\n"
 
         # Add options
         if isKey("options", node):
             node["options"] = (
                 f'root=PARTUUID={(node["volume"].lower())} {", ".join(node["options"])}'
             )
-            string += is_menuentry(tab, entry)
+            string += is_submenuentry(tab, entry)
             string += f'{tab}options "{node["options"]}"\n'
 
         # Add disabled option
         if isKey("disabled", node):
             if node["disabled"] == True:
-                string += is_menuentry(tab, entry)
+                string += is_submenuentry(tab, entry)
                 string += f"{tab}disabled\n"
 
         # Continue if menuentry has children (submenuentries)
@@ -106,7 +112,7 @@ def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
             string += get_refind_entries(node["children"], "submenuentry", keys, path)
 
         # Add curly bracket to close entry
-        string += is_menuentry(tab, entry)
+        string += is_submenuentry(tab, entry)
         string += "}\n"
 
     return string
