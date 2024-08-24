@@ -56,7 +56,7 @@ def get_refind_settings(data, keys: set[str]) -> str:
 
 
 # Parse through entries to create content
-def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
+def get_refind_entries(nodes, entry: str, keys: set[str]) -> str:
     tab = "\t"
     string = ""
 
@@ -73,7 +73,7 @@ def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
         if isKey("icon", node):
             img_name = node["icon"]
             node["icon"] = (
-                f"{path}/icons-custom/{BIG_ICON_SIZE}-{SMALL_ICON_SIZE}/{img_name}"
+                f"EFI/refind/icons-custom/{BIG_ICON_SIZE}-{SMALL_ICON_SIZE}/{img_name}"
             )
             string += is_submenuentry(tab, entry)
             string += f'{tab}icon {node["icon"]}\n'
@@ -111,7 +111,7 @@ def get_refind_entries(nodes, entry: str, keys: set[str], path: str) -> str:
 
         # Continue if menuentry has children (submenuentries)
         if entry == "menuentry" and isKey("children", node):
-            string += get_refind_entries(node["children"], "submenuentry", keys, path)
+            string += get_refind_entries(node["children"], "submenuentry", keys)
 
         # Add curly bracket to close entry
         string += is_submenuentry(tab, entry)
@@ -137,14 +137,8 @@ def generate_refind_conf() -> str | None:
         # Get all unique keys inside entries.json
         keys = get_keys(entries_data)
 
-        if "REFIND_PATH" not in keys:
-            print("REFIND_PATH key is not found in json/entries.json")
-            return None
-        else:
-            path = entries_data["REFIND_PATH"]
-
         # Get all the entries
-        entries = get_refind_entries(entries_data["root"], "menuentry", keys, path)
+        entries = get_refind_entries(entries_data["root"], "menuentry", keys)
         refind_conf += entries
         refind_conf += "\ninclude theme.conf\n"
 

@@ -1,5 +1,4 @@
 {
-  "REFIND_PATH": "EFI/refind",
   "root": [
     {
       "menuentry": "Pop!_OS",
