@@ -1,6 +1,8 @@
 import json
 from theme import get_icon_sizes
 
+from constants import ENTRIES_JSON, REFIND_JSON
+
 
 # Icon sizes for images
 [BIG_ICON_SIZE, SMALL_ICON_SIZE] = get_icon_sizes()
@@ -124,12 +126,12 @@ def generate_refind_conf() -> str | None:
     refind_conf = ""
 
     # Get settings for refind.json
-    with open("json/refind.json") as file:
+    with open(REFIND_JSON) as file:
         settings_data = json.load(file)
         refind_conf += get_refind_settings(settings_data, get_keys(settings_data))
 
     # Get the entries from json file
-    with open("json/entries.json") as file:
+    with open(ENTRIES_JSON) as file:
         entries_data = json.load(file)
 
         # Get all unique keys inside entries.json

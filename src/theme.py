@@ -1,8 +1,10 @@
 import json
 
+from constants import THEME_JSON
+
 
 def get_icon_sizes() -> list[str] | list[None]:
-    with open("json/theme.json") as file:
+    with open(THEME_JSON) as file:
         theme_data = json.load(file)
 
     if not theme_data.get("icon_size", False):
@@ -17,7 +19,7 @@ def generate_theme_conf() -> str | None:
     if not big_icon_size and not small_icon_size:
         return None
 
-    with open("json/theme.json") as file:
+    with open(THEME_JSON) as file:
         theme_data = json.load(file)
 
     if theme_data.get("hideui", False):
