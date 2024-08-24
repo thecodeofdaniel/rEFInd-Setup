@@ -24,7 +24,7 @@ Create the json files using the following script. This will make a copy of the
 `*.json.example` files. Edit them to fit your configuration.
 
 ```bash
-./z_generateJSON.sh
+./generate_json.sh
 ```
 
 ### What is needed?
@@ -51,8 +51,8 @@ to configure with the provided theme. Just follow the example json files.
 Create a backup of refind.conf and theme.conf if there is one.
 
 ```bash
-mv refind.conf refind.conf.bak
-mv theme.conf theme.conf.bak
+sudo mv /boot/efi/EFI/refind/refind.conf /boot/efi/EFI/refind/refind.conf.bak
+sudo mv /boot/efi/EFI/refind/theme.conf /boot/efi/EFI/refind/theme.conf.bak
 ```
 
 ## Run script
@@ -62,5 +62,5 @@ icons and your configurations to the refind directory. A copy of the conf files
 will be in the `conf` directory.
 
 ```bash
-./z_run.sh
+./apply.sh
 ```
